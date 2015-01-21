@@ -36,9 +36,16 @@ When an activity occurs:
 In our case I implemented an API service which accepts new activities, aggregates interested parties (followers), stores activities and returns streams.
 
 ##### Data returned for an outbox
-![data](https://cloud.githubusercontent.com/assets/6203829/5836173/615b9826-a17a-11e4-980b-b2ec98a9d1d5.png)
+![data_compact](https://cloud.githubusercontent.com/assets/6203829/5836435/6abf546c-a17e-11e4-929e-3aeb399b7478.png)
 
 ##### Links returned for an outbox
 ![links](https://cloud.githubusercontent.com/assets/6203829/5836175/675e71a8-a17a-11e4-9052-0e259691dea3.png)
 
+## Contribution
 
+Suggestions and Bug reports can be made through Github issues.
+Contributions are welcomed, there is currently no need to open an issue for it, but please follow the code style, including descriptive tests with [GoConvey](http://goconvey.co/).
+
+## License
+
+Licensed under [Apache 2.0](LICENSE).

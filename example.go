@@ -1,0 +1,5 @@
+package activitystream
+
+func main() {
+
+}
