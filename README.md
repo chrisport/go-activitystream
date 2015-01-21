@@ -1,6 +1,11 @@
 ActivityStream
 ==============
 
+Status:
+[![Build Status](https://drone.io/github.com/chrisport/go-activitystream/status.png)](https://drone.io/github.com/chrisport/go-activitystream/latest)
+[![Coverage Status](https://coveralls.io/repos/chrisport/go-activitystream/badge.svg)](https://coveralls.io/r/chrisport/go-activitystream)
+
+
 This project helps implementing an activitystream (social feed) following the **fan-out on write** approach:
 
 1. [on Write] Aggregate interest**ed** parties
