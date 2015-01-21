@@ -1,4 +1,4 @@
-package activitystream
+package main
 
 func main() {
 

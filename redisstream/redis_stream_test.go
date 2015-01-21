@@ -1,7 +1,7 @@
 package redisstream
 
 import (
-	"github.com/chrisport/activitystream/activitystream"
+	"github.com/chrisport/go-activitystream/activitystream"
 	redis "github.com/garyburd/redigo/redis"
 	. "github.com/smartystreets/goconvey/convey"
 	"labix.org/v2/mgo/bson"

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/chrisport/activitystream/activitystream"
+	"github.com/chrisport/go-activitystream/activitystream"
 	redis "github.com/garyburd/redigo/redis"
 	"reflect"
 	"time"
