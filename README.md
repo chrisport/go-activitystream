@@ -1,29 +1,35 @@
 ActivityStream
 ==============
 
-There are two main parts when implementing activity stream with fan-out on write: Aggregate interested parties of a certain
-activity and write to their streams. This project implements the second part efficiently using Redis.
+This project helps implementing an activitystream (social feed) following the **fan-out on write** approach:
 
-It provides an interface for storing and retrieving streams of Activities. It includes an implementation using Redis and
-providing pagination.
-An Activity stream (or social feed) is defined as a collection of Activities sorted by time of creation/publication.
-The struct Activity provides a format for storing an Activity, it is based on the definition on (activitystrea.ms)[http://activitystrea.ms/].
+1. [on Write] Aggregate interest**ed** parties
+2. [on Write] Write/store to their streams
+3. [on Read] Retrieve stream
 
-## Example Architecture
+In opposite to **fan-in on read** which would consist of:
+
+1. [on Write] Write/store activities
+2. [on Read] Aggregate interest**ing** parties
+3. [on Read] Read from their streams (and aggregate them)
+
+It realises the second and third part of a fan-out on write efficiently using Redis. It provides an interface which can be used to replace Redis with other databases/storages (Groupcache would be interesting! I may play with it in future).
+The project also defines a way of pagination following Facebook's approach, as well as a format for storing an Activity, which is based on the definition on [activitystrea.ms](http://activitystrea.ms/). The Redis implementation stores activities just once and writes their ID to the specified streams.
+
+## Complete Example Architecture
 ### Requirements
 
-People can follow each other and see their Followings' activities as a homestream and a person's activity on her/his
+Assuming in a system people can follow each other, see their Followings' activities as a "homestream" and a person's activity on her/his
 profile. So we need the following:
 
-- An outbox stream for every person, identified as PERSON_ID-out.
-- inbox stream for every person, identified as PERSON_ID.
+- An **outbox stream** for every person, identified as "PERSON_ID-out", which will be shown on the person's profile.
+- An **inbox stream** for every person, identified as "PERSON_ID", which will be shown as homestream of followers.
 
 When an activity occurs:
 
 1. Create a new Activity object.
 2. Retrieve list of followers
-3. Call activitystream.AddToStream with the activity and the followers inbox-ids.
-4. Call activitystream.AddToStream with the activity and the actor's outbox-id.
+3. Call activitystream.AddToStream with the activity using the followers inbox-ids + the actor's outbox-id.
 
 #### API
 
